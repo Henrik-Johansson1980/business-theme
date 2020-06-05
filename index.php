@@ -62,6 +62,7 @@ get_header();
 								?>
 							</li>
 						</ul>
+						<?php the_excerpt(); ?>
 					</div>
 				</article>
 				<div class="clr"></div>
