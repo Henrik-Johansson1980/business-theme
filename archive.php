@@ -1,6 +1,6 @@
 <?php
 /**
- * Index file for the Bussines Starter Theme.
+ * Archive file for the Bussines Starter Theme.
  *
  * @package WordPress
  * @subpackage businessthemestarter
@@ -14,7 +14,27 @@ get_header();
 <section class="row">
 	<div class="col-md-12 title-bar">
 		<div class="container">
-			<h1><?php echo esc_html__( 'Blog', 'businessthemestarter' ); ?></h1>
+			<h1>
+			<?php
+			if ( is_category() ) {
+				single_cat_title();
+			} elseif ( is_author() ) {
+				the_post();
+				echo 'Archives By author: ' . get_the_author();
+				rewind_posts();
+			} elseif ( is_tag() ) {
+				single_tag_title();
+			} elseif ( is_day() ) {
+				echo 'Archives By Day: ' . get_the_date();
+			} elseif ( is_month() ) {
+				echo 'Archives By Month: ' . get_the_date( 'F Y' );
+			} elseif ( is_year() ) {
+				echo 'Archives By Year: ' . get_the_date( 'Y' );
+			} else {
+				echo 'Archives';
+			}
+			?>
+			</h1>
 		</div>
 	</div>
 	<div class="container">
